@@ -1,21 +1,20 @@
 import React, { useRef, useState, useEffect } from "react";
 import Header from "./Header.js";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { checkValidData } from "../utils/validate.js";
 import { auth } from "../utils/firebase";
 import {
-  onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "../utils/redux/userSlice";
+import { addUser } from "../utils/redux/userSlice";
 
 const Login = () => {
   const [isSignInPage, setIsSignInPage] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
+
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
