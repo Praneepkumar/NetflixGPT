@@ -42,7 +42,7 @@ const Header = () => {
       </div>
       {user && (
         <button
-          className='rounded-md text-white bg-[#e50914] w-[10%] h-10'
+          className='rounded-md text-white bg-[#e50914] px-4 py-1'
           onClick={handleSignout}>
           Sign out
         </button>

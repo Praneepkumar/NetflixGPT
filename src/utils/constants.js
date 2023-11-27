@@ -9,3 +9,5 @@ export const API_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWQ2MzMyNzM3YzU1OGY0ZGYyMDVmOWI5ZmQ2ZjBkZiIsInN1YiI6IjY1NTZmNjBiN2YwNTQwMDBhY2E1OTdlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.MMfKiOuydtqyeJ_EA6pO5oLS1umezot5swv3d9N1pQQ",
   },
 };
+export const VIDEO_URL = (movie_id) => `
+https://api.themoviedb.org/3/movie/${movie_id}/videos`;
