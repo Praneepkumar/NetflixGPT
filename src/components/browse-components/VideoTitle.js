@@ -3,7 +3,9 @@ import ButtonSmall from "../../utils/util-components/ButtonSmall";
 
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className='w-screen aspect-video flex flex-col gap-14 mt-12 absolute top-32 z-50'>
+    <div
+      id='banner-text'
+      className='w-full aspect-video flex flex-col gap-14 pt-[190px] px-8 absolute h-[484px] z-50'>
       <div className='flex flex-col gap-4'>
         <h1 className='text-4xl font-bold text-white'>{title}</h1>
         <p className='leading-7 tracking-wider w-[38%] text-[#c9c9c9d1] font-thin'>
@@ -12,7 +14,7 @@ const VideoTitle = ({ title, overview }) => {
       </div>
       <div className='flex gap-5'>
         <ButtonSmall outlined={"black"} textColor={"white"}>
-          Play
+          ▶️ Play
         </ButtonSmall>
         <ButtonSmall
           background={"#e50914"}

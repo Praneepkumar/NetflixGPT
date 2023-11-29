@@ -11,3 +11,4 @@ export const API_OPTIONS = {
 };
 export const VIDEO_URL = (movie_id) => `
 https://api.themoviedb.org/3/movie/${movie_id}/videos`;
+export const IMG_PATH = "https://image.tmdb.org/t/p/w500";

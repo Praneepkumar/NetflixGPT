@@ -10,12 +10,10 @@ const MainMovieBanner = () => {
   const { original_title, overview, id } = movieOnBanner;
 
   return (
-    <div className='absolute'>
-      <div className='container mx-auto '>
-        <VideoTitle title={original_title} overview={overview} />
-      </div>
+    <>
+      <VideoTitle title={original_title} overview={overview} />
       <VideoBackground movie_id={id} />
-    </div>
+    </>
   );
 };
 

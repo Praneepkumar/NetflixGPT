@@ -16,6 +16,7 @@ const useMovieTrailer = (movie_id) => {
       const trailer =
         data.results.find((movie) => movie.type === "Trailer") ||
         data.results[0];
+      // console.log(trailer);
       dispatch(addTrailerVideo(trailer));
     } catch (e) {
       console.error(e);
