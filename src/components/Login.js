@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header.js";
 import { Link } from "react-router-dom";
 import { checkValidData } from "../utils/validate.js";
@@ -19,12 +19,12 @@ const Login = () => {
   const password = useRef(null);
   const name = useRef(null);
 
+  const dispatch = useDispatch();
+
   const toggleisSignInPage = () => {
     setIsSignInPage(!isSignInPage);
     setErrorMessage(null);
   };
-
-  const dispatch = useDispatch();
 
   const handleButtonSignin = () => {
     if (errorMessage) setErrorMessage(null);

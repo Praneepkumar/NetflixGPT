@@ -4,10 +4,13 @@ import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/redux/userSlice";
+import { toggleShowGptSearch } from "../utils/redux/gptSlice";
 import { LOGO } from "../utils/constants";
+
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
@@ -25,6 +28,7 @@ const Header = () => {
     });
     return () => unSubscribe();
   }, []);
+
   const handleSignout = () => {
     signOut(auth)
       .then(() => {
@@ -35,17 +39,28 @@ const Header = () => {
         navigate("/error");
       });
   };
+
+  const toggleGPTView = () => {
+    dispatch(toggleShowGptSearch());
+  };
   return (
-    <div className='flex justify-between px-5 py-2 items-center'>
+    <div className='flex justify-between px-5 py-2 items-center  bg-gradient-to-b from-black'>
       <div className='max-w-[15%] '>
         <img className='w-full' src={LOGO} alt='logo' />
       </div>
       {user && (
-        <button
-          className='rounded-md text-white bg-[#e50914] px-4 py-1'
-          onClick={handleSignout}>
-          Sign out
-        </button>
+        <div className='flex gap-3'>
+          <button
+            onClick={toggleGPTView}
+            className='rounded-lg text-white border border-white px-4 py-1'>
+            GPT Search
+          </button>
+          <button
+            className='rounded-lg text-white bg-[#e50914] px-4 py-1'
+            onClick={handleSignout}>
+            Sign out
+          </button>
+        </div>
       )}
     </div>
   );

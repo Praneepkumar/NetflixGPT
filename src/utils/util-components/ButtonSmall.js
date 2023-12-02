@@ -12,7 +12,7 @@ const ButtonSmall = ({
       className={
         outlined
           ? `border border-${outlined} text-${textColor} rounded-md px-5 py-2 hover:bg-${hoverBackground}`
-          : `bg-[${background}] text-${textColor} rounded-md px-5 py-2 hover:bg-[#c9121b]`
+          : `bg-[${background}] text-${textColor} rounded-lg px-5 py-2 hover:bg-[#c9121b]`
       }>
       {children}
     </button>
