@@ -14,7 +14,7 @@ const Browse = () => {
   useUpcomingMovies();
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   return (
-    <div id='browse'>
+    <div id='browse' className='bg-black'>
       <div className='relative'>
         <header id='header' className='absolute z-[999]'>
           <Header />
