@@ -84,13 +84,15 @@ const Login = () => {
     }
   };
   return (
-    <div id='login' className='relative'>
-      <div id='header' className='absolute z-[999]'>
+    <div id='login'>
+      <header
+        id='header'
+        className='w-full header-gradient py-4 absolute z-[999]'>
         <Header />
-      </div>
+      </header>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className='absolute w-[35%] bg-[#000000b4] border-[1px] border-[#ffffff1a] px-16 py-12 left-[50%] right-[50%] top-[15%] z-[999] translate-x-[-50%] flex flex-col  '>
+        className='absolute w-[35%] bg-[#000000b4] border-[1px] border-[#ffffff1a] px-16 py-12 left-[50%] right-[50%] top-[22%] z-[999] translate-x-[-50%] flex flex-col  '>
         <div className='flex flex-col gap-9 pb-8'>
           <h2 className='text-white text-[32px] font-medium'>
             {isSignInPage ? "Sign In" : "Sign Up"}{" "}
@@ -161,7 +163,7 @@ const Login = () => {
           <div className='text-md text-gray-400'>
             {isSignInPage ? (
               <>
-                New to Netflix?{" "}
+                New to Newflix?{" "}
                 <span
                   onClick={toggleisSignInPage}
                   className='text-white text-lg hover:underline cursor-pointer'>

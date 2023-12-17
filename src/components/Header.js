@@ -5,12 +5,13 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/redux/userSlice";
 import { toggleShowGptSearch } from "../utils/redux/gptSlice";
-import { LOGO } from "../utils/constants";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { getLanguage } from "../utils/redux/languagesSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
-
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const dispatch = useDispatch();
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
@@ -42,19 +43,40 @@ const Header = () => {
 
   const toggleGPTView = () => {
     dispatch(toggleShowGptSearch());
+    /*  !showGptSearch ? navigate("/browse/gpt-search") : navigate("/browse"); */
   };
+  const handleLanguageChange = (e) => {
+    dispatch(getLanguage(e.target.value));
+  };
+
   return (
-    <div className='flex justify-between px-5 py-2 items-center  bg-gradient-to-b from-black'>
-      <div className='max-w-[15%] '>
+    <div className='flex justify-between px-5 py-2 items-center bg-gradient-to-b w-full from-black'>
+      <div className='max-w-[15%]'>
         <img className='w-full' src={LOGO} alt='logo' />
       </div>
+
       {user && (
         <div className='flex gap-3'>
+          {showGptSearch && (
+            <select
+              className='bg-transparent text-white'
+              onChange={handleLanguageChange}>
+              {SUPPORTED_LANGUAGES.map((obj) => (
+                <option
+                  className='text-black focus:border-none'
+                  key={obj.identifier}
+                  value={obj.identifier}>
+                  {obj.language}
+                </option>
+              ))}
+            </select>
+          )}
           <button
             onClick={toggleGPTView}
             className='rounded-lg text-white border border-white px-4 py-1'>
-            GPT Search
+            {!showGptSearch ? "GPT Search" : "Home"}
           </button>
+
           <button
             className='rounded-lg text-white bg-[#e50914] px-4 py-1'
             onClick={handleSignout}>

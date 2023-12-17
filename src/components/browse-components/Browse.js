@@ -14,12 +14,13 @@ const Browse = () => {
   useUpcomingMovies();
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   return (
-    <div id='browse' className='bg-black'>
-      <div className='relative'>
-        <header id='header' className='absolute z-[999]'>
-          <Header />
-        </header>
-      </div>
+    <div id='browse'>
+      <header
+        id='header'
+        className='w-full py-4 absolute z-[999] header-gradient'>
+        <Header />
+      </header>
+
       {showGptSearch ? (
         <GPTSearch />
       ) : (
