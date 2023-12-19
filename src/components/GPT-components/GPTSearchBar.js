@@ -51,7 +51,7 @@ const GPTSearchBar = () => {
   };
   return (
     <>
-      <div className=' w-10/12 mx-auto grid grid-cols-12 gap-4'>
+      <div className='flex flex-col  w-3/4 md:p-0 md:w-10/12 mx-auto md:grid md:grid-cols-12 gap-4'>
         <div className='relative col-span-10'>
           {inputText && (
             <svg

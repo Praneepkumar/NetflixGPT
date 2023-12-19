@@ -73,14 +73,14 @@ const Header = () => {
           )}
           <button
             onClick={toggleGPTView}
-            className='rounded-lg text-white border border-white px-6 py-3 text-xl md:text-base md:px-4 md:py-1'>
+            className='rounded-lg text-white border border-white px-6 py-2 text-lg md:text-base md:px-4 md:py-1'>
             {!showGptSearch
               ? "GPT Search"
               : LANGUAGE_CONFIG?.[language].homeBtn}
           </button>
 
           <button
-            className='rounded-lg text-white bg-[#e50914] px-6 py-3 text-xl md:text-base md:px-4 md:py-1 hover:bg-[#e50914d8] active:translate-y-[-2px]'
+            className='rounded-lg text-white bg-[#e50914] px-6 py-2 text-lg md:text-base md:px-4 md:py-1 hover:bg-[#e50914d8] active:translate-y-[-2px]'
             onClick={handleSignout}>
             {LANGUAGE_CONFIG?.[language].signOut}
           </button>

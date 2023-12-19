@@ -8,13 +8,13 @@ const GPTSearch = () => {
   const { gptSearchResults } = useSelector((store) => store.gpt);
   return (
     <div className='relative w-full min-h-screen bg-gradient-to-b from-black to-[#0d0d0f]'>
-      <div className='pt-44'>
+      <div className='pt-56 md:pt-44'>
         <div className={!gptSearchResults && " pt-8"}>
           <h2
             className={
               language === "telugu"
-                ? "text-center px-8 text-2xl font-semibold mb-12 text-[#e6e6e6]"
-                : "text-center px-8 text-3xl font-semibold mb-12 text-[#e6e6e6]"
+                ? "text-center px-4 md:px-8 text-2xl md:text-2xl font-semibold mb-8 md:mb-12 text-[#e6e6e6]"
+                : "text-center px-4 md:px-8 text-2xl md:text-3xl font-semibold mb-8 md:mb-12 text-[#e6e6e6]"
             }>
             {LANGUAGE_CONFIG[language].heading}
           </h2>

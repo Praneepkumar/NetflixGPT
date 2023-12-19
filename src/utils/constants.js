@@ -13,8 +13,7 @@ https://api.themoviedb.org/3/movie/${movie_id}/videos`;
 export const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 
 export const OPENAI_API_KEY =
-  "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";
-/*   "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"; */
+  "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";
 
 export const SUPPORTED_LANGUAGES = [
   { identifier: "en", language: "English" },
