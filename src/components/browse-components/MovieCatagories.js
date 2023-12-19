@@ -16,8 +16,10 @@ const MovieCatagories = ({ title, movies }) => {
   if (!movies) return null;
   return (
     <>
-      <div className='container mx-auto pt-5'>
-        <h2 className='text-3xl font-semibold mb-8 text-white'>{title}</h2>
+      <div className='container mx-auto pt-28'>
+        <h2 className='text-2xl font-semibold mb-8 px-5 md:px-0 md:text-4xl text-white'>
+          {title}
+        </h2>
       </div>
       <div className='flex w-[97.5vw] mx-auto overflow-x-hidden relative mb-8 scroll-smooth'>
         <div ref={movieContainer} className='flex gap-2 '>

@@ -92,7 +92,7 @@ const Login = () => {
       </header>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className='absolute w-[35%] bg-[#000000b4] border-[1px] border-[#ffffff1a] px-16 py-12 left-[50%] right-[50%] top-[22%] z-[999] translate-x-[-50%] flex flex-col  '>
+        className='absolute w-[80%] top-[30%] left-[10%] right-[10%] px-7 py-8 md:w-[35%] bg-[#000000b4] border-[1px] border-[#ffffff1a] md:px-16 md:py-12 md:left-[50%] md:right-[50%] md:top-[22%] z-[999] md:translate-x-[-50%] flex flex-col  '>
         <div className='flex flex-col gap-9 pb-8'>
           <h2 className='text-white text-[32px] font-medium'>
             {isSignInPage ? "Sign In" : "Sign Up"}{" "}

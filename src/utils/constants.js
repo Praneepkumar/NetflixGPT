@@ -13,7 +13,7 @@ https://api.themoviedb.org/3/movie/${movie_id}/videos`;
 export const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 
 export const OPENAI_API_KEY =
-  "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";
+  "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";
 /*   "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"; */
 
 export const SUPPORTED_LANGUAGES = [
@@ -25,22 +25,30 @@ export const SUPPORTED_LANGUAGES = [
 
 export const LANGUAGE_CONFIG = {
   en: {
+    homeBtn: "Home",
+    signOut: "Sign out",
     heading: "Explore the effortless movie search experience empowered by GPT!",
     searchPlaceholder: "What would you like to watch today?",
     btnText: "Search",
   },
   hindi: {
+    homeBtn: "होम",
+    signOut: "साइन आउट",
     heading: "GPT द्वारा सशक्त सहज मूवी खोज अनुभव का अन्वेषण करें!",
     searchPlaceholder: "आज आप क्या देखना चाहेंगे?",
     btnText: "खोज",
   },
   telugu: {
+    homeBtn: "హోమ్",
+    signOut: "సైన్అవుట్",
     heading:
       "GPT ద్వారా సాధికారత పొందిన అప్రయత్నమైన చలనచిత్ర శోధన అనుభవాన్ని అన్వేషించండి!",
     searchPlaceholder: "ఈరోజు మీరు ఏమి చూడాలనుకుంటున్నారు?",
     btnText: "వెతకండి",
   },
   spanish: {
+    homeBtn: "hogar",
+    signOut: "desconectar",
     heading:
       "¡Explore la sencilla experiencia de búsqueda de películas potenciada por GPT!",
     searchPlaceholder: "¿Qué te gustaría ver hoy?",

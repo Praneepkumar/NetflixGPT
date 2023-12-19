@@ -5,10 +5,12 @@ const VideoTitle = ({ title, overview }) => {
   return (
     <div
       id='banner-text'
-      className='w-full aspect-video flex flex-col gap-14 pt-[190px] px-8 absolute h-[484px] z-50'>
+      className='w-full md:aspect-video flex flex-col px-8 absolute mt-80 gap-10 md:gap-14 md:mt-96 md:h-[484px] z-50'>
       <div className='flex flex-col gap-4'>
-        <h1 className='text-4xl font-bold text-white'>{title}</h1>
-        <p className='leading-7 tracking-wider w-[38%] text-[#c9c9c9d1] font-thin'>
+        <h1 className='text-[26px] font-bold md:text-4xl text-white'>
+          {title}
+        </h1>
+        <p className='hidden md:block leading-7 tracking-wider w-[38%] text-[#c9c9c9d1] font-thin'>
           {overview}
         </p>
       </div>
