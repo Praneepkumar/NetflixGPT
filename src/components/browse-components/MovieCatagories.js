@@ -23,7 +23,7 @@ const MovieCatagories = ({ title, movies }) => {
       <div className='relative mb-8 w-full'>
         <div
           ref={movieContainer}
-          className='flex  mx-auto overflow-x-hidden relative scroll-smooth'>
+          className='flex w-screen px-5 overflow-x-hidden relative scroll-smooth'>
           <div className='flex gap-3 md:gap-2 '>
             {movies.map((movie) => (
               <MovieCard
@@ -35,7 +35,7 @@ const MovieCatagories = ({ title, movies }) => {
           </div>
         </div>
         <div
-          className='absolute left-0 top-0 px-2 h-full bg-gradient-to-r from-black flex items-center'
+          className='absolute left-0 top-0 px-1 h-full bg-gradient-to-r from-black flex items-center'
           onClick={() => handleBtnScroll("prev")}>
           <button className='flex items-center'>
             <svg
@@ -50,7 +50,7 @@ const MovieCatagories = ({ title, movies }) => {
           </button>
         </div>
         <div
-          className='absolute right-0 top-0 px-2 h-full bg-gradient-to-l from-black  flex items-center'
+          className='absolute right-0 top-0 px-1 h-full bg-gradient-to-l from-black  flex items-center'
           onClick={() => handleBtnScroll("next")}>
           <button className='flex items-center'>
             <svg
