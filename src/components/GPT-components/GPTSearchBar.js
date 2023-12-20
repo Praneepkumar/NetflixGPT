@@ -56,7 +56,7 @@ const GPTSearchBar = () => {
           {inputText && (
             <svg
               onClick={() => setInputText("")}
-              className='absolute right-4 top-[0.8rem] hover:cursor-pointer'
+              className='absolute right-4 top-5 md:top-[0.8rem] hover:cursor-pointer'
               xmlns='http://www.w3.org/2000/svg'
               width='24'
               height='24'
@@ -68,13 +68,13 @@ const GPTSearchBar = () => {
           <input
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            className='block w-full font-normal rounded-lg px-4 py-[14px] text-white placeholder:font-normal placeholder:text-[#666666] bg-[#1d1d1d75] border-[1px] border-[#a5a5a53a] focus:bg-[#242424c7]'
+            className='block w-full font-normal rounded-lg px-4 py-4 text-xl md:text-base md:py-[14px] text-white placeholder:font-normal placeholder:text-[#666666] placeholder:text-lg md:placeholder:text-base bg-[#1d1d1d75] border-[1px] border-[#a5a5a53a] focus:bg-[#242424c7]'
             type='text'
             placeholder={LANGUAGE_CONFIG[language].searchPlaceholder}
           />
         </div>
         <button
-          className='col-span-2 rounded-lg text-white bg-[#e50914] px-4 py-[14px] hover:bg-[#e50914d8]'
+          className='col-span-2 rounded-lg text-white bg-[#e50914] px-4 py-4 text-xl md:text-base md:py-[14px] hover:bg-[#e50914d8]'
           onClick={handleGPTSearchClick}>
           {LANGUAGE_CONFIG[language].btnText}
         </button>

@@ -3,36 +3,41 @@ import MovieCard from "./MovieCard";
 
 const MovieCatagories = ({ title, movies }) => {
   const movieContainer = useRef(null);
-  const handleBtnPrev = () => {
+
+  const handleBtnScroll = (direction) => {
     const width = movieContainer.current.clientWidth;
-    movieContainer.current.scrollLeft =
-      movieContainer.current.scrollLeft - width;
+    direction === "prev"
+      ? (movieContainer.current.scrollLeft -= width)
+      : (movieContainer.current.scrollLeft += width);
+    console.log(movieContainer.current.scrollLeft);
   };
-  const handleBtnNext = () => {
-    const width = movieContainer.current.clientWidth;
-    movieContainer.current.scrollLeft =
-      movieContainer.current.scrollLeft + width;
-  };
+
   if (!movies) return null;
   return (
     <>
-      <div className='container mx-auto pt-28'>
-        <h2 className='text-2xl font-semibold mb-8 px-5 md:px-0 md:text-4xl text-white'>
+      <div className='container mx-auto md:mx-0 first:pt-28 md:first:pt-14'>
+        <h2 className='text-3xl font-semibold mb-8 px-5 md:px-8 md:text-3xl text-white'>
           {title}
         </h2>
       </div>
-      <div className='flex w-[97.5vw] mx-auto overflow-x-hidden relative mb-8 scroll-smooth'>
-        <div ref={movieContainer} className='flex gap-2 '>
-          {movies.map((movie) => (
-            <MovieCard
-              posterPath={movie?.poster_path}
-              movieTitle={movie?.title}
-              key={movie?.id}
-            />
-          ))}
+      <div className='relative mb-8 w-full'>
+        <div
+          ref={movieContainer}
+          className='flex  mx-auto overflow-x-hidden relative scroll-smooth'>
+          <div className='flex gap-3 md:gap-2 '>
+            {movies.map((movie) => (
+              <MovieCard
+                posterPath={movie?.poster_path}
+                movieTitle={movie?.title}
+                key={movie?.id}
+              />
+            ))}
+          </div>
         </div>
-        <div className='absolute left-0 px-4 h-full  bg-gradient-to-r from-black flex items-center'>
-          <button className='flex items-center' onClick={handleBtnPrev}>
+        <div
+          className='absolute left-0 top-0 px-2 h-full bg-gradient-to-r from-black flex items-center'
+          onClick={() => handleBtnScroll("prev")}>
+          <button className='flex items-center'>
             <svg
               className='shadow-md'
               xmlns='http://www.w3.org/2000/svg'
@@ -44,8 +49,10 @@ const MovieCatagories = ({ title, movies }) => {
             </svg>
           </button>
         </div>
-        <div className='absolute right-0 px-4 h-full bg-gradient-to-l from-black  flex items-center'>
-          <button className='flex items-center' onClick={handleBtnNext}>
+        <div
+          className='absolute right-0 top-0 px-2 h-full bg-gradient-to-l from-black  flex items-center'
+          onClick={() => handleBtnScroll("next")}>
+          <button className='flex items-center'>
             <svg
               className='shadow-md'
               xmlns='http://www.w3.org/2000/svg'

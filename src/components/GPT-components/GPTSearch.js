@@ -8,8 +8,8 @@ const GPTSearch = () => {
   const { gptSearchResults } = useSelector((store) => store.gpt);
   return (
     <div className='relative w-full min-h-screen bg-gradient-to-b from-black to-[#0d0d0f]'>
-      <div className='pt-56 md:pt-44'>
-        <div className={!gptSearchResults && " pt-8"}>
+      <div className='pt-80 md:pt-44'>
+        <div className={!gptSearchResults && "pt-14 md:pt-8"}>
           <h2
             className={
               language === "telugu"

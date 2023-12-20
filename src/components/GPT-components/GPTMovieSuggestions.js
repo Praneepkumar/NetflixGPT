@@ -6,7 +6,7 @@ const GPTMovieSuggestions = () => {
   const { movieNames, gptSearchResults } = useSelector((store) => store.gpt);
 
   return (
-    <div className='flex flex-col mt-20'>
+    <div className='flex flex-col md:mt-20'>
       {movieNames.map((movieName, i) => (
         <MovieCatagories
           key={movieName}
