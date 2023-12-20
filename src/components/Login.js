@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/redux/userSlice";
-
+import usegetErrorMessage from "../custom-hooks/usegetErrorMessage.js";
 const Login = () => {
   const [isSignInPage, setIsSignInPage] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -53,7 +53,7 @@ const Login = () => {
               );
             })
             .catch((error) => {
-              const errorMessage = error.message;
+              const errorMessage = usegetErrorMessage(error.message);
               setErrorMessage(errorMessage);
             });
           setIsSignInPage(true);
@@ -61,7 +61,7 @@ const Login = () => {
         .catch((error) => {
           console.error(error);
           const errorCode = error.code;
-          const errorMessage = error.message;
+          const errorMessage = usegetErrorMessage(error.message);
           setErrorMessage(errorMessage);
         });
     } else {
@@ -78,7 +78,7 @@ const Login = () => {
         .catch((error) => {
           console.error(error);
           const errorCode = error.code;
-          const errorMessage = error.message;
+          const errorMessage = usegetErrorMessage(error.message);
           setErrorMessage(errorMessage);
         });
     }

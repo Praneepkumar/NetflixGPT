@@ -1,30 +1,29 @@
-import { useRef } from "react";
 import MovieCard from "./MovieCard";
-
-const MovieCatagories = ({ title, movies }) => {
+import { useRef } from "react";
+const RenderMoviesList = ({ title, movies }) => {
   const movieContainer = useRef(null);
-
   const handleBtnScroll = (direction) => {
     const width = movieContainer.current.clientWidth;
     direction === "prev"
       ? (movieContainer.current.scrollLeft -= width)
       : (movieContainer.current.scrollLeft += width);
-    console.log(movieContainer.current.scrollLeft);
   };
 
   if (!movies) return null;
   return (
     <>
-      <div className='container mx-auto md:mx-0 first:pt-28 md:first:pt-14'>
-        <h2 className='text-3xl font-semibold mb-8 px-5 md:px-8 md:text-3xl text-white'>
-          {title}
-        </h2>
-      </div>
+      {title && (
+        <div className='container mx-auto md:mx-0 first:pt-28 md:first:pt-14'>
+          <h2 className='text-3xl font-semibold mb-8 px-5 md:px-8 md:text-3xl text-white'>
+            {title}
+          </h2>
+        </div>
+      )}
       <div className='relative mb-8 w-full'>
         <div
           ref={movieContainer}
-          className='flex w-screen px-5 overflow-x-hidden relative scroll-smooth'>
-          <div className='flex gap-3 md:gap-2 '>
+          className='flex w-full px-5 overflow-x-hidden relative scroll-smooth'>
+          <div className='flex gap-3'>
             {movies.map((movie) => (
               <MovieCard
                 posterPath={movie?.poster_path}
@@ -69,4 +68,4 @@ const MovieCatagories = ({ title, movies }) => {
   );
 };
 
-export default MovieCatagories;
+export default RenderMoviesList;

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS, LANGUAGE_CONFIG } from "../../utils/constants";
 import openAIConfig from "../../utils/openAIConfig";
 import { addGPTSearchResults, clearSearch } from "../../utils/redux/gptSlice";
+import useSearchFilterResults from "../../custom-hooks/useSearchFilterResults";
 import Shimmer from "../Shimmer";
 
 const GPTSearchBar = () => {
@@ -11,6 +12,7 @@ const GPTSearchBar = () => {
   const language = useSelector((store) => store.setLanguage.language);
   const dispatch = useDispatch();
   const { gptSearchResults } = useSelector((store) => store.gpt);
+
   const searchMovieInTMDB = async (query) => {
     const res = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
@@ -25,11 +27,12 @@ const GPTSearchBar = () => {
 
     setInputText("");
     if (gptSearchResults) dispatch(clearSearch());
+
     setShowShimmer(true);
     const gptInputQuery =
-      "Act as movie recommendation system and give results for query: " +
+      "Act as a movie recommendation system and give results for query: " +
       inputText +
-      ". give only names of the 5 movies, seperated by commas like the example result given ahead. Example: The Ghost, Avatar, Conjuring, Transformers, Batman vs Spiderman";
+      ". give only names of the 5 movies without listing them for with numbers, roman letters, letters, separated by commas like the example result given ahead. Example: The Ghost, Avatar, Conjuring, Transformers, Batman vs Spiderman";
     const gptResults = await openAIConfig.chat.completions.create({
       messages: [{ role: "user", content: gptInputQuery }],
       model: "gpt-3.5-turbo",
@@ -41,7 +44,14 @@ const GPTSearchBar = () => {
       searchMovieInTMDB(movie),
     );
 
-    const gptSearchData = await Promise.all(gptSearchPromises);
+    const gptSearchDataResults = await Promise.all(gptSearchPromises);
+    const gptSearchData = gptSearchDataResults.flatMap((data) => data);
+
+    /* const gptSearchFilteredResults = useSearchFilterResults(
+      gptSearchList,
+      gptSearchData,
+    ); */
+
     dispatch(
       addGPTSearchResults({
         movieNames: gptSearchList,
@@ -49,6 +59,7 @@ const GPTSearchBar = () => {
       }),
     );
   };
+
   return (
     <>
       <div className='flex flex-col  w-10/12 md:p-0 md:w-10/12 mx-auto md:grid md:grid-cols-12 gap-6'>
