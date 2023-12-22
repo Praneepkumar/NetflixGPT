@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { API_OPTIONS, LANGUAGE_CONFIG } from "../../utils/constants";
+import { API_OPTIONS } from "../../utils/constants";
 import openAIConfig from "../../utils/openAIConfig";
 import { addGPTSearchResults, clearSearch } from "../../utils/redux/gptSlice";
 import useSearchFilterResults from "../../custom-hooks/useSearchFilterResults";
@@ -9,7 +9,7 @@ import Shimmer from "../Shimmer";
 const GPTSearchBar = () => {
   const [inputText, setInputText] = useState("");
   const [showShimmer, setShowShimmer] = useState(false);
-  const language = useSelector((store) => store.setLanguage.language);
+
   const dispatch = useDispatch();
   const { gptSearchResults } = useSelector((store) => store.gpt);
 
@@ -81,13 +81,13 @@ const GPTSearchBar = () => {
             onChange={(e) => setInputText(e.target.value)}
             className='block w-full font-normal rounded-lg px-4 py-4 text-xl md:text-base md:py-[14px] text-white placeholder:font-normal placeholder:text-[#666666] placeholder:text-lg md:placeholder:text-base bg-[#1d1d1d75] border-[1px] border-[#a5a5a53a] focus:bg-[#242424c7]'
             type='text'
-            placeholder={LANGUAGE_CONFIG[language].searchPlaceholder}
+            placeholder='What would you like to watch?'
           />
         </div>
         <button
           className='col-span-2 rounded-lg text-white bg-[#e50914] px-4 py-4 text-xl md:text-base md:py-[14px] hover:bg-[#e50914d8]'
           onClick={handleGPTSearchClick}>
-          {LANGUAGE_CONFIG[language].btnText}
+          Search
         </button>
       </div>
       {showShimmer && !gptSearchResults && <Shimmer cardCount={10} />}

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import Header from "./Header.js";
+
 import { Link } from "react-router-dom";
 import { checkValidData } from "../utils/validate.js";
 import { auth } from "../utils/firebase";
@@ -15,8 +15,8 @@ const Login = () => {
   const [isSignInPage, setIsSignInPage] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const email = useRef(null);
-  const password = useRef(null);
+  const [email, setEmail] = useState("test@gpt.com");
+  const [password, setPassword] = useState("Test@123456");
   const name = useRef(null);
 
   const dispatch = useDispatch();
@@ -29,16 +29,12 @@ const Login = () => {
   const handleButtonSignin = () => {
     if (errorMessage) setErrorMessage(null);
 
-    const message = checkValidData(email.current.value, password.current.value);
+    const message = checkValidData(email, password);
     setErrorMessage(message);
     if (message) return;
     if (!isSignInPage) {
       //config signup
-      createUserWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value,
-      )
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
@@ -48,6 +44,8 @@ const Login = () => {
           })
             .then(() => {
               const { uid, email, displayName } = auth.currentUser;
+              if (displayName === null || "")
+                throw new Error("Name should not be empty");
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName }),
               );
@@ -66,11 +64,7 @@ const Login = () => {
         });
     } else {
       //config signin
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value,
-      )
+      signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
@@ -85,11 +79,6 @@ const Login = () => {
   };
   return (
     <div id='login'>
-      <header
-        id='header'
-        className='w-full header-gradient py-4 absolute z-[999]'>
-        <Header />
-      </header>
       <form
         onSubmit={(e) => e.preventDefault()}
         className='absolute w-[80%] top-[30%] left-[10%] right-[10%] px-7 py-8 md:w-[35%] bg-[#000000b4] border-[1px] border-[#ffffff1a] md:px-16 md:py-12 md:left-[50%] md:right-[50%] md:top-[22%] z-[999] md:translate-x-[-50%] flex flex-col  '>
@@ -107,14 +96,16 @@ const Login = () => {
               />
             )}
             <input
-              ref={email}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type='email'
               placeholder='Email '
               className='rounded-md p-4 text-white bg-[#333] placeholder:text-[#8c8c8c]'
             />
             <div className='flex flex-col gap-3'>
               <input
-                ref={password}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type='password'
                 placeholder='Password'
                 className='rounded-md p-4 text-white bg-[#333] placeholder:text-[#8c8c8c]'

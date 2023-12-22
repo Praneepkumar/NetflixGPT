@@ -1,20 +1,14 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Login from "./Login";
-import Body from "./Body";
-import Browse from "./browse-components/Browse";
-import GPTSearch from "./GPT-components/GPTSearch";
+import { Provider } from "react-redux";
+import { Outlet } from "react-router-dom";
+import appStore from "../utils/redux/appStore";
+import Header from "./Header";
 
 const App = () => {
-  const appRouter = createBrowserRouter([
-    { path: "/", element: <Login /> },
-    { path: "/browse", element: <Browse /> },
-    { path: "/browse/gpt-search", element: <GPTSearch /> },
-  ]);
-
   return (
-    <RouterProvider router={appRouter}>
-      <Body />
-    </RouterProvider>
+    <Provider store={appStore}>
+      <Header />
+      <Outlet />
+    </Provider>
   );
 };
 export default App;

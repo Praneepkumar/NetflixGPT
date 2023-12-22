@@ -1,5 +1,5 @@
 export const LOGO = require("../../newflix.png");
-
+export const USER_AVATAR = require("../../avatar-red.jpeg");
 export const API_OPTIONS = {
   method: "GET",
   headers: {
@@ -12,8 +12,8 @@ https://api.themoviedb.org/3/movie/${movie_id}/videos`;
 export const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 
 export const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_KEY;
-
-export const SUPPORTED_LANGUAGES = [
+export const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_KEY;
+/* export const SUPPORTED_LANGUAGES = [
   { identifier: "en", language: "English" },
   { identifier: "hindi", language: "Hindi" },
   { identifier: "telugu", language: "Telugu" },
@@ -52,3 +52,4 @@ export const LANGUAGE_CONFIG = {
     btnText: "Buscar",
   },
 };
+ */

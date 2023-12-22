@@ -15,12 +15,6 @@ const Browse = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   return (
     <div id='browse'>
-      <header
-        id='header'
-        className='w-full py-4 absolute z-[999] header-gradient bg-gradient-to-b from-black'>
-        <Header />
-      </header>
-
       {showGptSearch ? (
         <GPTSearch />
       ) : (

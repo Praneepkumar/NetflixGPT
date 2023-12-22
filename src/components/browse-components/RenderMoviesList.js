@@ -7,6 +7,7 @@ const RenderMoviesList = ({ title, movies }) => {
     direction === "prev"
       ? (movieContainer.current.scrollLeft -= width)
       : (movieContainer.current.scrollLeft += width);
+    console.log(movieContainer.current.scrollLeft);
   };
 
   if (!movies) return null;
@@ -33,6 +34,7 @@ const RenderMoviesList = ({ title, movies }) => {
             ))}
           </div>
         </div>
+
         <div
           className='absolute left-0 top-0 px-1 h-full bg-gradient-to-r from-black flex items-center'
           onClick={() => handleBtnScroll("prev")}>
@@ -48,6 +50,7 @@ const RenderMoviesList = ({ title, movies }) => {
             </svg>
           </button>
         </div>
+
         <div
           className='absolute right-0 top-0 px-1 h-full bg-gradient-to-l from-black  flex items-center'
           onClick={() => handleBtnScroll("next")}>
