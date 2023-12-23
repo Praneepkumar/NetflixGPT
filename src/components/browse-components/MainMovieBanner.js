@@ -9,7 +9,7 @@ const MainMovieBanner = () => {
   const { original_title, overview, id } = movieOnBanner;
 
   return (
-    <div className=' z-0'>
+    <div className=' z-50'>
       <VideoTitle title={original_title} overview={overview} videoID={id} />
       <VideoBackground movie_id={id} />
     </div>

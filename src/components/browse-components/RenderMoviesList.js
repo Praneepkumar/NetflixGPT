@@ -14,7 +14,7 @@ const RenderMoviesList = ({ title, movies }) => {
   return (
     <div className='flex flex-col z-50'>
       {title && (
-        <div className='container mx-auto md:mx-0 first:pt-20 md:first:pt-14  z-50'>
+        <div className='container mx-auto md:mx-0 first:pt-12 md:first:pt-14  z-50'>
           <h2 className='text-3xl font-semibold mb-8 px-5 md:px-8 md:text-3xl text-white'>
             {title}
           </h2>

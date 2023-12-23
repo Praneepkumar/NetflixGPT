@@ -9,7 +9,7 @@ const VideoBackground = ({ movie_id }) => {
   return (
     <div className='video-background w-full md:min-h-full z-10'>
       <div className=' w-full md:min-h-full aspect-square md:aspect-video overflow-x-hidden bg-gradient-to-r from-black absolute z-0'></div>
-      <div className=''>
+      <div className='video-bg'>
         <iframe
           className='w-full aspect-square md:aspect-video overflow-x-hidden '
           title='Youtube video player'
