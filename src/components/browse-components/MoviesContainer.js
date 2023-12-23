@@ -7,7 +7,7 @@ const MoviesContainer = () => {
 
   return (
     <div className='bg-black/40 md:-my-48 pb-20 z-20 '>
-      <div className='md:-my-7'>
+      <div className='mt-14 md:-my-7'>
         <RenderMoviesList
           title={"Now Playing"}
           key={"Now Playing"}

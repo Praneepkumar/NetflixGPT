@@ -21,7 +21,7 @@ const MovieTrailerPopup = ({ movieID }) => {
     <div className='pop-up w-full h-screen top-0 left-0 fixed z-[999] '>
       <button
         onClick={handlePopupClose}
-        className='absolute top-11 md:top-7 right-2  w-10 h-10 rounded-full z-50 flex items-center justify-center  md:w-9 md:h-9 md:right-52 shadow-[1px_0px_29px_2px_rgba(255,255,255,0.22)] bg-[#e50914] hover:bg-[#e50914d8]'>
+        className='absolute top-32 md:top-7 right-2  w-10 h-10 rounded-full z-50 flex items-center justify-center  md:w-9 md:h-9 md:right-52 shadow-[1px_0px_29px_2px_rgba(255,255,255,0.22)] bg-[#e50914] hover:bg-[#e50914d8]'>
         <svg
           className='fill-white'
           xmlns='http://www.w3.org/2000/svg'
