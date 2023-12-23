@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 const DropdownMenu = () => {

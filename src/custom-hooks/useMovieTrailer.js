@@ -1,12 +1,20 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addTrailerVideo } from "../utils/redux/moviesDataSlice";
+import {
+  addTrailerVideo,
+  addTrailerBackgroundVideo,
+} from "../utils/redux/moviesDataSlice";
 
-const useMovieTrailer = (movie_id) => {
+const useMovieTrailer = (movie_id, isBanner = false) => {
   const dispatch = useDispatch();
-  const trailerVideo = useSelector((store) => store.movies.trailerVideo);
-  const getMovieVideo = async () => {
+  const trailerVideo = useSelector(
+    (store) => store?.movies?.trailerVideo.trailer,
+  );
+  const trailerBackgroundVideo = useSelector(
+    (store) => store?.movies?.trailerBackgroundVideo,
+  );
+  const getMovieTrailer = async () => {
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${movie_id}/videos`,
@@ -16,14 +24,19 @@ const useMovieTrailer = (movie_id) => {
       const trailer =
         data.results.find((movie) => movie.type === "Trailer") ||
         data.results[0];
-      dispatch(addTrailerVideo(trailer));
+      isBanner
+        ? dispatch(addTrailerBackgroundVideo(trailer))
+        : dispatch(addTrailerVideo(trailer));
     } catch (e) {
       console.error(e);
     }
   };
+
   useEffect(() => {
-    !trailerVideo && getMovieVideo();
-  }, []);
+    if ((!isBanner && !trailerVideo) || (isBanner && !trailerBackgroundVideo)) {
+      getMovieTrailer();
+    }
+  }, [isBanner, trailerVideo, trailerBackgroundVideo, movie_id]);
 };
 
 export default useMovieTrailer;

@@ -6,12 +6,28 @@ const MoviesContainer = () => {
   const movies = useSelector((store) => store?.movies);
 
   return (
-    <div className='bg-black z-50 md:-my-4 pb-20'>
+    <div className='bg-black/40 md:-my-48 pb-20 z-20 '>
       <div className='md:-my-7'>
-        <RenderMoviesList title={"Now Playing"} movies={movies?.nowPlaying} />
-        <RenderMoviesList title={"Popular"} movies={movies?.popularMovies} />
-        <RenderMoviesList title={"Top Rated"} movies={movies?.topRatedMovies} />
-        <RenderMoviesList title={"Upcoming"} movies={movies?.upComingMovies} />
+        <RenderMoviesList
+          title={"Now Playing"}
+          key={"Now Playing"}
+          movies={movies?.nowPlaying}
+        />
+        <RenderMoviesList
+          title={"Popular"}
+          key={"Popular"}
+          movies={movies?.popularMovies}
+        />
+        <RenderMoviesList
+          title={"Top Rated"}
+          key={"Top Rated"}
+          movies={movies?.topRatedMovies}
+        />
+        <RenderMoviesList
+          title={"Upcoming"}
+          key={"Upcoming"}
+          movies={movies?.upComingMovies}
+        />
       </div>
     </div>
   );

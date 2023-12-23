@@ -1,16 +1,16 @@
 import React, { useRef, useState } from "react";
 
 import { Link } from "react-router-dom";
-import { checkValidData } from "../utils/validate.js";
-import { auth } from "../utils/firebase";
+import { checkValidData } from "../../utils/validate.js";
+import { auth } from "../../utils/firebase.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { addUser } from "../utils/redux/userSlice";
-import usegetErrorMessage from "../custom-hooks/usegetErrorMessage.js";
+import { addUser } from "../../utils/redux/userSlice.js";
+import usegetErrorMessage from "../../custom-hooks/usegetErrorMessage.js";
 const Login = () => {
   const [isSignInPage, setIsSignInPage] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);

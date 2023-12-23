@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import App from "./components/App";
+import App from "./components/Layout/App";
 import "./index.css";
 import { createRoot } from "react-dom/client";
-import Login from "./components/Login";
+import Login from "./components/Layout/Login";
 import Browse from "./components/browse-components/Browse";
 import GPTSearch from "./components/GPT-components/GPTSearch";
 

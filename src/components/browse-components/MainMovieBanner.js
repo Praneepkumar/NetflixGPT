@@ -9,10 +9,10 @@ const MainMovieBanner = () => {
   const { original_title, overview, id } = movieOnBanner;
 
   return (
-    <>
-      <VideoTitle title={original_title} overview={overview} />
+    <div className=' z-0'>
+      <VideoTitle title={original_title} overview={overview} videoID={id} />
       <VideoBackground movie_id={id} />
-    </>
+    </div>
   );
 };
 

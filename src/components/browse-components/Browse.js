@@ -3,7 +3,6 @@ import usePopularMovies from "../../custom-hooks/usePopularMovies";
 import useTopRatedMovies from "../../custom-hooks/useTopRatedMovies";
 import useUpcomingMovies from "../../custom-hooks/useUpcomingMovies";
 import GPTSearch from "../GPT-components/GPTSearch";
-import Header from "../Header";
 import MainMovieBanner from "./MainMovieBanner";
 import MoviesContainer from "./MoviesContainer";
 import { useSelector } from "react-redux";
@@ -14,16 +13,16 @@ const Browse = () => {
   useUpcomingMovies();
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   return (
-    <div id='browse'>
+    <>
       {showGptSearch ? (
         <GPTSearch />
       ) : (
-        <main className='pt-28 bg-black  md:pt-0'>
+        <main className='browse pt-28 bg-black  md:pt-0'>
           <MainMovieBanner />
           <MoviesContainer />
         </main>
       )}
-    </div>
+    </>
   );
 };
 

@@ -2,10 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { addUser, removeUser } from "../utils/redux/userSlice";
-import { LOGO, USER_AVATAR } from "../utils/constants";
+import { addUser, removeUser } from "../../utils/redux/userSlice";
+import { LOGO, USER_AVATAR } from "../../utils/constants";
 import DropdownMenu from "./DropdownMenu";
 import { useRef } from "react";
 
@@ -19,6 +19,10 @@ const Header = () => {
   const [isGPTSearch, setIsGPTSearch] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [navbarOpacity, setNavbarOpacity] = useState(0);
+
+  const showTrailerPopup = useSelector(
+    (store) => store.movies.trailerVideo.showTrailerPopup,
+  );
 
   const handleResize = () => {
     setIsLargeScreen(window.innerWidth > 768);
@@ -36,16 +40,18 @@ const Header = () => {
     navigate("/browse/gpt-search");
   };
 
+  const handleOutsideClick = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target))
+      setShowDropdown(false);
+    console.log("clicked");
+  };
+
   useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target))
-        setShowDropdown(false);
-    };
     showDropdown && document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, []);
+  }, [showDropdown]);
 
   useEffect(() => {
     handleResize();
@@ -83,15 +89,14 @@ const Header = () => {
   return (
     <header
       id='header'
-      className='w-full py-3 z-[999] fixed'
+      className={`w-full py-3 fixed ${!showTrailerPopup ? "z-[999]" : "z-10"}`}
       style={{
-        zIndex: 9999999,
         backgroundColor: !isLargeScreen && "rgba(0, 0, 0, 0.5)",
         backgroundImage: isLargeScreen
           ? `linear-gradient(180deg, #141414 ${navbarOpacity}%,transparent)`
           : `linear-gradient(180deg, #000 ${navbarOpacity}%,transparent)`,
       }}>
-      <div className='flex flex-col gap-2 px-3 transition-all duration-300 md:block'>
+      <div className='flex flex-col gap-2 px-3 transition-all duration-300 md:block md:px-0'>
         <div className='flex items-center py-5 md:flex-row justify-between md:px-10 md:py-1  '>
           <div className='w-40 md:w-auto md:flex md:flex-row md:gap-24 md:items-center'>
             <div className=' md:max-w-[9rem]'>

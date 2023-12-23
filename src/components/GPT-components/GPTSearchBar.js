@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../../utils/constants";
 import openAIConfig from "../../utils/openAIConfig";
 import { addGPTSearchResults, clearSearch } from "../../utils/redux/gptSlice";
-import useSearchFilterResults from "../../custom-hooks/useSearchFilterResults";
-import Shimmer from "../Shimmer";
+import Shimmer from "../Layout/Shimmer";
 
 const GPTSearchBar = () => {
   const [inputText, setInputText] = useState("");
