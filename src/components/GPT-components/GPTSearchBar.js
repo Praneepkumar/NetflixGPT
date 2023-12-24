@@ -4,14 +4,15 @@ import { API_OPTIONS } from "../../utils/constants";
 import openAIConfig from "../../utils/openAIConfig";
 import { addGPTSearchResults, clearSearch } from "../../utils/redux/gptSlice";
 import Shimmer from "../Layout/Shimmer";
-
+import { SEARCH_COUNT } from "../../utils/constants";
+import { reduceSearchCount } from "../../utils/redux/setSearchCountSlice";
 const GPTSearchBar = () => {
   const [inputText, setInputText] = useState("");
   const [showShimmer, setShowShimmer] = useState(false);
 
   const dispatch = useDispatch();
   const { gptSearchResults } = useSelector((store) => store.gpt);
-
+  const searchCount = useSelector((store) => store.searchCount);
   const searchMovieInTMDB = async (query) => {
     const res = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
@@ -25,42 +26,62 @@ const GPTSearchBar = () => {
     if (!inputText) return;
 
     setInputText("");
+
     if (gptSearchResults) dispatch(clearSearch());
 
     setShowShimmer(true);
+
     const gptInputQuery =
       "Act as a movie recommendation system and give results for query: " +
       inputText +
       ". give only names of the 5 movies without listing them for with numbers, roman letters, letters, separated by commas like the example result given ahead. Example: The Ghost, Avatar, Conjuring, Transformers, Batman vs Spiderman";
-    const gptResults = await openAIConfig.chat.completions.create({
-      messages: [{ role: "user", content: gptInputQuery }],
-      model: "gpt-3.5-turbo",
-    });
 
-    if (!gptResults.choices) return;
-    const gptSearchList = gptResults.choices?.[0]?.message?.content.split(",");
-    const gptSearchPromises = gptSearchList.map((movie) =>
-      searchMovieInTMDB(movie),
-    );
+    if (searchCount !== 0) {
+      dispatch(reduceSearchCount());
+      const gptResults = await openAIConfig.chat.completions.create({
+        messages: [{ role: "user", content: gptInputQuery }],
+        model: "gpt-3.5-turbo",
+      });
 
-    const gptSearchDataResults = await Promise.all(gptSearchPromises);
-    const gptSearchData = gptSearchDataResults.flatMap((data) => data);
+      if (!gptResults.choices) return;
 
-    /* const gptSearchFilteredResults = useSearchFilterResults(
+      const gptSearchList =
+        gptResults.choices?.[0]?.message?.content.split(",");
+      const gptSearchPromises = gptSearchList.map((movie) =>
+        searchMovieInTMDB(movie),
+      );
+
+      const gptSearchDataResults = await Promise.all(gptSearchPromises);
+      const gptSearchData = gptSearchDataResults.flatMap((data) => data);
+
+      /* const gptSearchFilteredResults = useSearchFilterResults(
       gptSearchList,
       gptSearchData,
     ); */
 
-    dispatch(
-      addGPTSearchResults({
-        movieNames: gptSearchList,
-        gptSearchResults: gptSearchData,
-      }),
-    );
+      dispatch(
+        addGPTSearchResults({
+          movieNames: gptSearchList,
+          gptSearchResults: gptSearchData,
+        }),
+      );
+    }
   };
 
   return (
     <>
+      <div className='flex flex-col gap-5  mb-12 md:mb-9'>
+        <h2 className='text-center px-4 md:px-8 text-2xl md:text-3xl font-semibold text-[#e6e6e6]'>
+          Explore the effortless movie search experience empowered by GPT!
+        </h2>
+        <p className='text-center text-xl text-zinc-500'>
+          Due to the expensive OpenAI requests, your search is limited. Requests
+          left:{" "}
+          <span className='text-2xl font-bold text-zinc-300'>
+            {searchCount}
+          </span>
+        </p>
+      </div>
       <div className='flex flex-col  w-10/12 md:p-0 md:w-10/12 mx-auto md:grid md:grid-cols-12 gap-6'>
         <div className='relative col-span-10'>
           {inputText && (
@@ -84,7 +105,11 @@ const GPTSearchBar = () => {
           />
         </div>
         <button
-          className='col-span-2 rounded-lg text-white bg-[#e50914] px-4 py-4 text-xl md:text-base md:py-[14px] hover:bg-[#e50914d8]'
+          className={
+            searchCount !== 0
+              ? "col-span-2 rounded-lg text-white bg-[#e50914] px-4 py-4 text-xl md:text-base md:py-[14px] hover:bg-[#e50914d8]"
+              : "col-span-2 rounded-lg text-white bg-zinc-700 px-4 py-4 text-xl md:text-base md:py-[14px] cursor-not-allowed"
+          }
           onClick={handleGPTSearchClick}>
           Search
         </button>

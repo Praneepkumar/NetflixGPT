@@ -12,10 +12,10 @@ const RenderMoviesList = ({ title, movies }) => {
 
   if (!movies) return null;
   return (
-    <div className='flex flex-col z-50'>
+    <div className='flex flex-col z-50 gap-5'>
       {title && (
-        <div className='container mx-auto md:mx-0 first:pt-12 md:first:pt-14 z-50'>
-          <h2 className='text-3xl font-semibold mb-8 px-5 md:px-8 md:text-3xl text-white'>
+        <div className='container mx-auto md:mx-0 4 z-50'>
+          <h2 className='text-3xl font-semibold px-5 md:px-8 md:text-2xl text-white'>
             {title}
           </h2>
         </div>
@@ -24,14 +24,10 @@ const RenderMoviesList = ({ title, movies }) => {
         <div
           ref={movieContainer}
           className='flex w-full px-5 overflow-x-hidden relative scroll-smooth'>
-          <div className='flex gap-3 py-5'>
+          <div className='flex gap-3 py-4'>
             {movies.map((movie) => (
               <div className='hover:scale-110 transition-transform duration-300'>
-                <MovieCard
-                  posterPath={movie?.poster_path}
-                  movieTitle={movie?.title}
-                  key={movie?.id}
-                />
+                <MovieCard movie={movie} key={movie?.id} />
               </div>
             ))}
           </div>

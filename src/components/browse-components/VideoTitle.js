@@ -13,12 +13,12 @@ const VideoTitle = ({ title, overview, videoID }) => {
       {showTrailerPopup && <MovieTrailerPopup movieID={videoID} />}
       <div
         id='banner-text'
-        className='w-full md:aspect-video flex flex-col px-8 absolute mt-64 gap-10 md:gap-14 md:mt-52 md:h-[23rem] z-50'>
-        <div className='flex flex-col gap-4'>
-          <h1 className='text-[26px] font-bold md:text-4xl text-white'>
+        className='w-full md:aspect-video flex flex-col px-8 absolute mt-44 gap-7 md:gap-14 md:mt-52 md:h-[23rem] z-50'>
+        <div className='flex flex-col gap-4 md:max-w-[50%]'>
+          <h1 className='text-[22px] font-bold md:text-4xl text-white'>
             {title}
           </h1>
-          <p className='hidden md:block leading-7 text-base tracking-wider w-[38%] text-[#c9c9c9d1] font-thin'>
+          <p className='hidden md:block leading-7 text-base tracking-wider md:w-[75%] text-[#c9c9c9d1] font-thin'>
             {overview}
           </p>
         </div>

@@ -6,7 +6,7 @@ const GPTMovieSuggestions = () => {
   return (
     <div className='flex flex-col md:mt-20'>
       <RenderMoviesList
-        key={"suggestedMovies"}
+        key='suggestedMovies'
         title={null}
         movies={gptSearchResults}
       />
