@@ -75,8 +75,8 @@ const GPTSearchBar = () => {
           Explore the effortless movie search experience empowered by GPT!
         </h2>
         <p className='text-center text-xl text-zinc-500'>
-          Due to the expensive OpenAI requests, your search is limited. Requests
-          left:{" "}
+          OpenAI inquiries are expensive, please bear with limited search.
+          Requests left:{" "}
           <span className='text-2xl font-bold text-zinc-300'>
             {searchCount}
           </span>
@@ -108,7 +108,7 @@ const GPTSearchBar = () => {
           className={
             searchCount !== 0
               ? "col-span-2 rounded-lg text-white bg-[#e50914] px-4 py-4 text-xl md:text-base md:py-[14px] hover:bg-[#e50914d8]"
-              : "col-span-2 rounded-lg text-white bg-zinc-700 px-4 py-4 text-xl md:text-base md:py-[14px] cursor-not-allowed"
+              : "col-span-2 rounded-lg text-[#828282] bg-[#454545] px-4 py-4 text-xl md:text-base md:py-[14px] cursor-not-allowed"
           }
           onClick={handleGPTSearchClick}>
           Search

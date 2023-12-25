@@ -13,7 +13,7 @@ export const IMG_PATH = "https://image.tmdb.org/t/p/w500";
 
 export const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_KEY;
 export const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_KEY;
-export const SEARCH_COUNT = 4;
+export const SEARCH_COUNT = 0;
 
 export const GENRES = [
   {
