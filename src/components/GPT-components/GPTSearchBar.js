@@ -70,17 +70,21 @@ const GPTSearchBar = () => {
 
   return (
     <>
-      <div className='flex flex-col gap-5  mb-12 md:mb-9'>
-        <h2 className='text-center px-4 md:px-8 text-2xl md:text-3xl font-semibold text-[#e6e6e6]'>
+      <div className='flex flex-col gap-7 text-center mb-12 md:mb-9'>
+        <h2 className=' px-4 md:px-8 text-2xl md:text-3xl font-semibold text-[#e6e6e6]'>
           Explore the effortless movie search experience empowered by GPT!
         </h2>
-        <p className='text-center text-xl text-zinc-500'>
-          OpenAI inquiries are expensive, please bear with limited search.
-          Requests left:{" "}
-          <span className='text-2xl font-bold text-zinc-300'>
-            {searchCount}
-          </span>
-        </p>
+        <div className='flex flex-col gap-1'>
+          <p className='text-xl text-zinc-500'>
+            GPT inquiries are expensive, please bear with limited search.{" "}
+          </p>
+          <p className='text-xl text-zinc-400'>
+            Requests left:{" "}
+            <span className='text-2xl font-bold text-zinc-200'>
+              {searchCount}
+            </span>
+          </p>
+        </div>
       </div>
       <div className='flex flex-col  w-10/12 md:p-0 md:w-10/12 mx-auto md:grid md:grid-cols-12 gap-6'>
         <div className='relative col-span-10'>
