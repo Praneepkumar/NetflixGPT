@@ -100,7 +100,7 @@ const Header = () => {
         <div className='flex items-center py-5 md:flex-row justify-between md:px-10 md:py-1  '>
           <div className='w-40 md:w-auto md:flex md:flex-row md:gap-24 md:items-center'>
             <div className=' md:max-w-[9rem]'>
-              <Link to={"/browse"}>
+              <Link to={"/browse"} onClick={() => setIsGPTSearch(false)}>
                 <img className='w-full' src={LOGO} alt='logo' />
               </Link>
             </div>

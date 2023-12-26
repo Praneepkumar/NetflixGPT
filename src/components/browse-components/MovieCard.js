@@ -8,7 +8,7 @@ const MovieCard = ({ movie }) => {
   return (
     <div className='relative cursor-pointer'>
       <div
-        className='w-[14rem] md:w-44 rounded-md overflow-hidden '
+        className='w-[13rem] h-[18rem] md:w-44 md:h-[16.5rem] rounded-md overflow-hidden '
         style={{ boxShadow: "0px 5px 12px -8px rgba(222,225,255,0.21)" }}>
         <img
           src={IMG_PATH + poster_path}

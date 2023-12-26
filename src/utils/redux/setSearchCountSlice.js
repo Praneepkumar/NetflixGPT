@@ -5,9 +5,8 @@ const setSearchCountSlice = createSlice({
   name: "searchCount",
   initialState: SEARCH_COUNT,
   reducers: {
-    reduceSearchCount(state) {
-      if (SEARCH_COUNT === 0) return;
-      return SEARCH_COUNT - 1;
+    reduceSearchCount() {
+      return SEARCH_COUNT > 0 && SEARCH_COUNT - 1;
     },
   },
 });
