@@ -9,7 +9,8 @@ const GPTSearch = () => {
     <div
       className='relative w-full min-h-screen'
       style={{
-        backgroundImage: "linear-gradient(to bottom,#000000,#140705 )",
+        backgroundImage:
+          "linear-gradient(171deg, rgba(75, 44, 48, 1) 11%, rgba(48, 44, 69, 1) 50%, rgba(31, 28, 43, 1) 98%)",
       }}>
       <div className='pt-72 pb-14 md:pt-40'>
         <div className={!gptSearchResults && " md:pt-8"}>
