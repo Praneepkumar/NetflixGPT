@@ -51,3 +51,7 @@ Enjoy streaming movies directly through the application.
 ## Acknowledgments
 
 This project was made possible with the use of ReactJS, Redux, Tailwind CSS, Firebase, and OpenAI.
+
+## Watch the video featuring App
+
+[Click here to view Demo](https://app.screencastify.com/v3/watch/fnVzfmHcAJiw5NttUftv).
