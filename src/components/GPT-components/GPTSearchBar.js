@@ -4,12 +4,11 @@ import { API_OPTIONS } from "../../utils/constants";
 import openAIConfig from "../../utils/openAIConfig";
 import { addGPTSearchResults, clearSearch } from "../../utils/redux/gptSlice";
 import Shimmer from "../Layout/Shimmer";
-import { SEARCH_COUNT } from "../../utils/constants";
 import { reduceSearchCount } from "../../utils/redux/setSearchCountSlice";
-const GPTSearchBar = () => {
-  const [inputText, setInputText] = useState("");
-  const [showShimmer, setShowShimmer] = useState(false);
+import GPTSearchHeader from "./GPTSearchHeader";
 
+const GPTSearchBar = ({ inputText, setInputText }) => {
+  const [showShimmer, setShowShimmer] = useState(false);
   const dispatch = useDispatch();
   const { gptSearchResults } = useSelector((store) => store.gpt);
   const searchCount = useSelector((store) => store.searchCount);
@@ -54,11 +53,6 @@ const GPTSearchBar = () => {
       const gptSearchDataResults = await Promise.all(gptSearchPromises);
       const gptSearchData = gptSearchDataResults.flatMap((data) => data);
 
-      /* const gptSearchFilteredResults = useSearchFilterResults(
-      gptSearchList,
-      gptSearchData,
-    ); */
-
       dispatch(
         addGPTSearchResults({
           movieNames: gptSearchList,
@@ -70,23 +64,8 @@ const GPTSearchBar = () => {
 
   return (
     <>
-      <div className='flex flex-col gap-7 text-center mb-12 md:mb-9'>
-        <h2 className=' px-4 md:px-8 text-2xl md:text-3xl font-semibold text-[#e6e6e6]'>
-          Explore the effortless movie search experience empowered by GPT!
-        </h2>
-        <div className='flex flex-col gap-1'>
-          <p className='text-xl text-zinc-500'>
-            GPT inquiries are expensive, please bear with limited search.{" "}
-          </p>
-          <p className='text-xl text-zinc-400'>
-            Requests left:{" "}
-            <span className='text-2xl font-bold text-zinc-200'>
-              {searchCount}
-            </span>
-          </p>
-        </div>
-      </div>
-      <div className='flex flex-col  w-10/12 md:p-0 md:w-10/12 mx-auto md:grid md:grid-cols-12 gap-6'>
+      <GPTSearchHeader />
+      <div className='flex flex-col  w-10/12 md:p-0 md:w-10/12 mx-auto md:grid md:grid-cols-12 gap-3'>
         <div className='relative col-span-10'>
           {inputText && (
             <svg
@@ -103,7 +82,7 @@ const GPTSearchBar = () => {
           <input
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            className='block w-full font-normal rounded-lg px-4 py-4 text-xl md:text-base md:py-[14px] text-white placeholder:font-normal placeholder:text-[#666666] placeholder:text-lg md:placeholder:text-base bg-[#1d1d1d75] border-[1px] border-[#a5a5a53a] focus:bg-[#242424c7]'
+            className='block w-full font-normal rounded-lg px-4 py-4 text-xl md:text-base md:py-[14px] text-white placeholder:font-normal placeholder:text-[#666666] placeholder:text-lg md:placeholder:text-base bg-[#201e1e94] border-[1px] border-[#a5a5a53a] focus:bg-[#242424c7]'
             type='text'
             placeholder='What would you like to watch?'
           />
